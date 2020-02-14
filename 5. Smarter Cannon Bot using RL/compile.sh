@@ -1,0 +1,1 @@
+g++ -std=c++11 -O3 -flto -march=native -mtune=knl CustomPlayer.cpp -o CustomPlayer

@@ -1,0 +1,119 @@
+Case:1
+    rowSold[0][0].townhall=true;rowSold[0][0].opponent=true;rowSold[0][0].free=false;
+    rowSold[1][0].opponent=true;rowSold[1][0].free=false;
+    rowSold[2][0].opponent=true;rowSold[2][0].free=false;
+    rowSold[3][0].opponent=true;rowSold[3][0].free=false;
+
+    // rowSold[4][0].opponent=true;rowSold[4][0].free=false;
+
+    rowSold[6][0].opponent=false;rowSold[6][0].free=false;
+
+    rowSold[4][1].opponent=false;rowSold[4][1].free=false;
+
+    game.SoldierMatrix=rowSold;
+    printGameMatrix(game.SoldierMatrix);
+    game.ListMoves(0,3);
+    cout << "moves "<<game.SoldierMatrix[3][0].Moves.size()<<endl;
+    printMoves(game.SoldierMatrix[3][0].Moves);
+    cout << "killmoves "<<game.SoldierMatrix[3][0].KillMoves.size()<<endl;
+    printMoves(game.SoldierMatrix[3][0].KillMoves);
+    cout << "cannonmoves "<<game.SoldierMatrix[3][0].CannonMoves.size()<<endl;
+    printMoves(game.SoldierMatrix[3][0].CannonMoves);
+    cout << "bomb "<<game.SoldierMatrix[3][0].Bomb.size()<<endl;
+    printMoves(game.SoldierMatrix[3][0].Bomb);
+
+    Case: 2
+    rowSold[4][4].opponent=true;rowSold[4][4].free=false;
+    rowSold[3][3].opponent=true;rowSold[3][3].free=false;
+    rowSold[2][2].opponent=true;rowSold[2][2].free=false;
+
+    rowSold[3][5].opponent=true;rowSold[3][5].free=false;
+    rowSold[2][6].opponent=true;rowSold[2][6].free=false;
+
+    rowSold[5][3].opponent=true;rowSold[5][3].free=false;
+    rowSold[6][6].opponent=false;rowSold[6][6].free=false;
+    game.SoldierMatrix=rowSold;
+    printGameMatrix(game.SoldierMatrix);
+    game.ListMoves(4,4);
+    cout << "moves "<<game.SoldierMatrix[4][4].Moves.size()<<endl;
+    printMoves(game.SoldierMatrix[4][4].Moves);
+    cout << "killmoves "<<game.SoldierMatrix[4][4].KillMoves.size()<<endl;
+    printMoves(game.SoldierMatrix[4][4].KillMoves);
+    cout << "cannonmoves "<<game.SoldierMatrix[4][4].CannonMoves.size()<<endl;
+    printMoves(game.SoldierMatrix[4][4].CannonMoves);
+    cout << "bomb "<<game.SoldierMatrix[4][4].Bomb.size()<<endl;
+    printMoves(game.SoldierMatrix[4][4].Bomb);
+
+    Case: 3
+    rowSold[7][7].townhall=true;rowSold[7][7].opponent=false;rowSold[7][7].free=false;
+    rowSold[6][7].opponent=false;rowSold[6][7].free=false;
+    rowSold[5][7].opponent=false;rowSold[5][7].free=false;
+    rowSold[4][7].opponent=false;rowSold[4][7].free=false;
+
+    // rowSold[3][7].opponent=false;rowSold[3][7].free=false;
+
+    rowSold[1][7].opponent=true;rowSold[1][7].free=false;
+
+    rowSold[3][6].opponent=true;rowSold[3][6].free=false;
+    game.SoldierMatrix=rowSold;
+    printGameMatrix(game.SoldierMatrix);
+    game.ListMoves(7,4);
+    cout << "moves "<<game.SoldierMatrix[4][7].Moves.size()<<endl;
+    printMoves(game.SoldierMatrix[4][7].Moves);
+    cout << "killmoves "<<game.SoldierMatrix[4][7].KillMoves.size()<<endl;
+    printMoves(game.SoldierMatrix[4][7].KillMoves);
+    cout << "cannonmoves "<<game.SoldierMatrix[4][7].CannonMoves.size()<<endl;
+    printMoves(game.SoldierMatrix[4][7].CannonMoves);
+    cout << "bomb "<<game.SoldierMatrix[4][7].Bomb.size()<<endl;
+    printMoves(game.SoldierMatrix[4][7].Bomb);
+
+    //Case: 4
+    rowSold[4][4].opponent=false;rowSold[4][4].free=false;
+    rowSold[5][5].opponent=false;rowSold[5][5].free=false;
+    rowSold[6][6].opponent=false;rowSold[6][6].free=false;
+
+    rowSold[5][3].opponent=false;rowSold[5][3].free=false;
+    rowSold[6][2].opponent=false;rowSold[6][2].free=false;
+
+    rowSold[2][6].opponent=true;rowSold[2][6].free=false;
+    rowSold[3][3].opponent=false;rowSold[3][3].free=false;
+    game.SoldierMatrix=rowSold;
+    printGameMatrix(game.SoldierMatrix);
+    game.ListMoves(4,4);
+    cout << "moves "<<game.SoldierMatrix[4][4].Moves.size()<<endl;
+    printMoves(game.SoldierMatrix[4][4].Moves);
+    cout << "killmoves "<<game.SoldierMatrix[4][4].KillMoves.size()<<endl;
+    printMoves(game.SoldierMatrix[4][4].KillMoves);
+    cout << "cannonmoves "<<game.SoldierMatrix[4][4].CannonMoves.size()<<endl;
+    printMoves(game.SoldierMatrix[4][4].CannonMoves);
+    cout << "bomb "<<game.SoldierMatrix[4][4].Bomb.size()<<endl;
+    printMoves(game.SoldierMatrix[4][4].Bomb);
+
+    //Case: 5
+    rowSold[4][4].opponent=false;rowSold[4][4].free=false;
+    rowSold[3][3].opponent=true;rowSold[3][3].free=false;
+    rowSold[4][3].opponent=true;rowSold[4][3].free=false;
+    game.SoldierMatrix=rowSold;
+    printGameMatrix(game.SoldierMatrix);
+    game.ListMoves(4,4);
+    cout << "moves "<<game.SoldierMatrix[4][4].Moves.size()<<endl;
+    printMoves(game.SoldierMatrix[4][4].Moves);
+    cout << "killmoves "<<game.SoldierMatrix[4][4].KillMoves.size()<<endl;
+    printMoves(game.SoldierMatrix[4][4].KillMoves);
+    cout << "cannonmoves "<<game.SoldierMatrix[4][4].CannonMoves.size()<<endl;
+    printMoves(game.SoldierMatrix[4][4].CannonMoves);
+    cout << "bomb "<<game.SoldierMatrix[4][4].Bomb.size()<<endl;
+    printMoves(game.SoldierMatrix[4][4].Bomb);
+
+    //Case:5
+    rowSold[4][4].opponent=false;rowSold[4][4].free=false;
+    rowSold[5][5].opponent=false;rowSold[5][5].free=false;
+    rowSold[6][6].opponent=false;rowSold[6][6].free=false;
+
+    rowSold[3][5].opponent=false;rowSold[3][5].free=false;
+    rowSold[2][6].opponent=false;rowSold[2][6].free=false;
+
+    rowSold[2][6].opponent=true;rowSold[2][6].free=false;
+    rowSold[2][2].opponent=false;rowSold[2][2].free=false;
+    rowSold[6][2].opponent=true;rowSold[6][2].free=false;
+    

@@ -1,0 +1,1 @@
+g++ -O3 CustomPlayer.cpp -o CustomPlayer

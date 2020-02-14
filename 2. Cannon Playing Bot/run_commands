@@ -1,0 +1,5 @@
+python server.py 10000 -n 8 -m 8 -NC 2 -TL 150 -LOG server.log
+export PATH=$PATH:'/media/prats/DATA/OneDrive - IIT Delhi/5th Sem Courses/COL333 - AI/Assignments/A2/Cannon-AI-master'
+python client.py 0.0.0.0 10000 RandomPlayer.py -mode GUI
+export PATH=$PATH:'/media/prats/DATA/OneDrive - IIT Delhi/5th Sem Courses/COL333 - AI/Assignments/A2/Cannon-AI-master'
+python client.py 0.0.0.0 10000 RandomPlayer.py

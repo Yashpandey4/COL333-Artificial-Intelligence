@@ -1,0 +1,316 @@
+int cannons(GameMatrix *state)
+{
+    vector<float> cannoncount(3,0);//(270,90), (225,135), (315,45)
+    vector<float> cannonbad(3,0);//bad 315,45 cannon, bad 225,135 cannon
+    vector<float> sidecan(2,0);//left and right
+    vector<float> badsidecan(2,0);//bad left and bad right
+    vector<float> backcan(3,0);
+    vector<float> backcanbad(3,0);
+    for(auto p:(state->MeSoldiers)){
+        if(p.second.cannonEnd)
+        {
+            for (int i = 0; i < p.second.direction.size(); i++)
+            {
+                if(p.second.direction[i]==90) 
+                {
+                    if(p.second.y<2) cannonbad[0] = cannonbad[0] + 1;
+                    else cannoncount[0] = cannoncount[0] + 1;
+                }
+                else if(p.second.direction[i]==135)
+                {
+                    if(p.second.x<2||p.second.y<2) cannonbad[1] = cannonbad[1] + 1;
+                    else cannoncount[1] = cannoncount[1] + 1;
+                }
+                else if(p.second.direction[i]==45)
+                {
+                    if(p.second.x>5||p.second.y<2) cannonbad[2] = cannonbad[2] + 1;
+                    else cannoncount[2] = cannoncount[2] + 1;
+                }
+                else if(p.second.direction[i]==0)
+                {
+                    if(p.second.x>5) badsidecan[0] = badsidecan[0] + 1;
+                    else sidecan[0] = sidecan[0] + 1;
+                }
+                else if(p.second.direction[i]==180)
+                {
+                    if(p.second.x<2) badsidecan[1] = badsidecan[1] + 1;
+                    else sidecan[1] = sidecan[1] + 1;
+                }
+                else if(p.second.direction[i]==270) 
+                {
+                    if(p.second.y>5) backcanbad[0] = backcanbad[0] + 1;
+                    else backcan[0] = backcan[0] + 1;
+                }
+                else if(p.second.direction[i]==225)
+                {
+                    if(p.second.x<2||p.second.y>5) backcanbad[1] = backcanbad[1] + 1;
+                    else backcan[1] = backcan[1] + 1;
+                }
+                else if(p.second.direction[i]==315)
+                {
+                    if(p.second.x>5||p.second.y>5) backcanbad[2] = backcanbad[2] + 1;
+                    else backcan[2] = backcan[2] + 1;
+                }
+            }
+        }
+    }
+    for (auto p:(state->OpSoldiers))
+    {
+        if(p.second.cannonEnd)
+        {
+            for (int i = 0; i < p.second.direction.size(); i++)
+            {
+                if(p.second.direction[i]==90) 
+                {
+                    if(p.second.y<2) backcanbad[0] = backcanbad[0] - 1;
+                    else backcan[0] = backcan[0] - 1;
+                }
+                else if(p.second.direction[i]==135)
+                {
+                    if(p.second.x<2||p.second.y<2) backcanbad[1] = backcanbad[1] - 1;
+                    else backcan[1] = backcan[1] - 1;
+                }
+                else if(p.second.direction[i]==45)
+                {
+                    if(p.second.x>5||p.second.y<2) backcanbad[2] = backcanbad[2] - 1;
+                    else backcan[2] = backcan[2] - 1;
+                }
+                else if(p.second.direction[i]==0)
+                {
+                    if(p.second.x>5) badsidecan[0] = badsidecan[0] - 1;
+                    else sidecan[0] = sidecan[0] - 1;
+                }
+                else if(p.second.direction[i]==180)
+                {
+                    if(p.second.x<2) badsidecan[1] = badsidecan[1] - 1;
+                    else sidecan[1] = sidecan[1] - 1;
+                }
+                else if(p.second.direction[i]==270) 
+                {
+                    if(p.second.y>5) cannonbad[0] = cannonbad[0] - 1;
+                    else cannoncount[0] = cannoncount[0] - 1;
+                }
+                else if(p.second.direction[i]==225)
+                {
+                    if(p.second.x<2||p.second.y>5) cannonbad[1] = cannonbad[1] - 1;
+                    else cannoncount[1] = cannoncount[1] - 1;
+                }
+                else if(p.second.direction[i]==315)
+                {
+                    if(p.second.x>5||p.second.y>5) cannonbad[2] = cannonbad[2] - 1;
+                    else cannoncount[2] = cannoncount[2] - 1;
+                }
+            }
+        }
+    }
+
+    int cannonkills1 = 0; int cannonkills2 = 0;
+
+    for (auto p:(state->MeSoldiers))
+    {
+        cannonkills1 = cannonkills1+p.second.CannonKills.size();
+    }
+    for (auto p:(state->OpSoldiers))
+    {
+        cannonkills2 = cannonkills2+p.second.CannonKills.size();
+    }
+    return 25*(cannonkills1-cannonkills2)+ (cannoncount[0]+cannoncount[1]+cannoncount[2]) + (backcan[0]+backcan[1]+backcan[2]) + (sidecan[0]+sidecan[1])
+                                        +(cannonbad[0]+cannonbad[1]+cannonbad[2]) +(backcanbad[0]+backcan[1]+backcan[2]) +(badsidecan[0]+badsidecan[1]);
+}
+
+
+
+
+
+int cannons(GameMatrix *state)
+{
+    vector<float> cannoncount(3,0);//(270,90), (225,135), (315,45)
+    vector<float> cannonbad(3,0);//bad 315,45 cannon, bad 225,135 cannon
+    vector<float> sidecan(2,0);//left and right
+    vector<float> badsidecan(2,0);//bad left and bad right
+    vector<float> backcan(3,0);
+    vector<float> backcanbad(3,0);
+    for(auto p:(state->MeSoldiers)){
+        if(p.second.cannonEnd)
+        {
+            for (int i = 0; i < p.second.direction.size(); i++)
+            {
+                if(p.second.direction[i]==90) 
+                {
+                    if(p.second.y<2) cannonbad[0] = cannonbad[0] + p.second.y;
+                    else cannoncount[0] = cannoncount[0] + p.second.y;
+                }
+                else if(p.second.direction[i]==135)
+                {
+                    int c;
+                    if(p.second.x<=p.second.y)
+                    {
+                        c = p.second.x;
+                    }
+                    else
+                    {
+                        c = p.second.y;
+                    }
+                    if(p.second.x<2||p.second.y<2) cannonbad[1] = cannonbad[1] + c;
+                    else cannoncount[1] = cannoncount[1] + c;
+                }
+                else if(p.second.direction[i]==45)
+                {
+                    int c;
+                    if(7-p.second.x<=p.second.y)
+                    {
+                        c = 7-p.second.x;
+                    }
+                    else
+                    {
+                        c = p.second.y;
+                    }
+                    if(p.second.x>5||p.second.y<2) cannonbad[2] = cannonbad[2] + c;
+                    else cannoncount[2] = cannoncount[2] + c;
+                }
+                else if(p.second.direction[i]==0)
+                {
+                    int c;
+                    if(p.second.x>5) badsidecan[0] = badsidecan[0] + 7-p.second.x;
+                    else sidecan[0] = sidecan[0] + 7-p.second.x;
+                }
+                else if(p.second.direction[i]==180)
+                {
+                    if(p.second.x<2) badsidecan[1] = badsidecan[1] + p.second.x;
+                    else sidecan[1] = sidecan[1] + p.second.y;
+                }
+                else if(p.second.direction[i]==270) 
+                {
+                    if(p.second.y>5) backcanbad[0] = backcanbad[0] + 7-p.second.y;
+                    else backcan[0] = backcan[0] + 7-p.second.y;
+                }
+                else if(p.second.direction[i]==225)
+                {
+                    int c;
+                    if(p.second.x<=7-p.second.y)
+                    {
+                        c = p.second.x;
+                    }
+                    else
+                    {
+                        c = 7-p.second.y;
+                    }
+                    if(p.second.x<2||p.second.y>5) backcanbad[1] = backcanbad[1] + c;
+                    else backcan[1] = backcan[1] + c;
+                }
+                else if(p.second.direction[i]==315)
+                {
+                    int c;
+                    if(7-p.second.x<=7-p.second.y)
+                    {
+                        c = 7-p.second.x;
+                    }
+                    else
+                    {
+                        c = 7-p.second.y;
+                    }
+                    if(p.second.x>5||p.second.y>5) backcanbad[2] = backcanbad[2] + c;
+                    else backcan[2] = backcan[2] + c;
+                }
+            }
+        }
+    }
+    for (auto p:(state->OpSoldiers))
+    {
+        if(p.second.cannonEnd)
+        {
+            for (int i = 0; i < p.second.direction.size(); i++)
+            {
+                if(p.second.direction[i]==90) 
+                {
+                    if(p.second.y<2) backcanbad[0] = backcanbad[0] - p.second.y;
+                    else backcan[0] = backcan[0] - p.second.y;
+                }
+                else if(p.second.direction[i]==135)
+                {
+                    int c;
+                    if(p.second.x<=p.second.y)
+                    {
+                        c = p.second.x;
+                    }
+                    else
+                    {
+                        c = p.second.y;
+                    }
+                    if(p.second.x<2||p.second.y<2) backcanbad[1] = backcanbad[1] - c;
+                    else backcan[1] = backcan[1] - c;
+                }
+                else if(p.second.direction[i]==45)
+                {
+                    int c;
+                    if(7-p.second.x<=p.second.y)
+                    {
+                        c = 7-p.second.x;
+                    }
+                    else
+                    {
+                        c = p.second.y;
+                    }
+                    if(p.second.x>5||p.second.y<2) backcanbad[2] = backcanbad[2] - c;
+                    else backcan[2] = backcan[2] - c;
+                }
+                else if(p.second.direction[i]==0)
+                {
+                    if(p.second.x>5) badsidecan[0] = badsidecan[0] - (7-p.second.x);
+                    else sidecan[0] = sidecan[0] - (7-p.second.x);
+                }
+                else if(p.second.direction[i]==180)
+                {
+                    if(p.second.x<2) badsidecan[1] = badsidecan[1] - p.second.x;
+                    else sidecan[1] = sidecan[1] - p.second.x;
+                }
+                else if(p.second.direction[i]==270) 
+                {
+                    if(p.second.y>5) cannonbad[0] = cannonbad[0] - (7 - p.second.y);
+                    else cannoncount[0] = cannoncount[0] - (7 - p.second.y);
+                }
+                else if(p.second.direction[i]==225)
+                {
+                    int c;
+                    if(p.second.x<=7-p.second.y)
+                    {
+                        c = p.second.x;
+                    }
+                    else
+                    {
+                        c = 7-p.second.y;
+                    }
+                    if(p.second.x<2||p.second.y>5) cannonbad[1] = cannonbad[1] - c;
+                    else cannoncount[1] = cannoncount[1] - c;
+                }
+                else if(p.second.direction[i]==315)
+                {
+                    int c;
+                    if(7-p.second.x<=7-p.second.y)
+                    {
+                        c = 7-p.second.x;
+                    }
+                    else
+                    {
+                        c = 7-p.second.y;
+                    }
+                    if(p.second.x>5||p.second.y>5) cannonbad[2] = cannonbad[2] - c;
+                    else cannoncount[2] = cannoncount[2] - c;
+                }
+            }
+        }
+    }
+
+    int cannonkills1 = 0; int cannonkills2 = 0;
+
+    for (auto p:(state->MeSoldiers))
+    {
+        cannonkills1 = cannonkills1+p.second.CannonKills.size();
+    }
+    for (auto p:(state->OpSoldiers))
+    {
+        cannonkills2 = cannonkills2+p.second.CannonKills.size();
+    }
+    return 30*(cannonkills1-cannonkills2)+4*(cannoncount[0]+cannoncount[1]+cannoncount[2]) + 2*(sidecan[0]+sidecan[1])
+                                        -(cannonbad[0]+cannonbad[1]+cannonbad[2]) -(badsidecan[0]+badsidecan[1]);
+}
